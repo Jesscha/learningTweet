@@ -2,11 +2,13 @@ import "./App.css";
 import { useFireBaseCollection } from "./hooks/useFireBase";
 
 function App() {
-  useFireBaseCollection();
+  const { handleAdd } = useFireBaseCollection();
 
   return (
     <div className="App">
       <h1>Welcome to learning tweet</h1>
+
+      <button onClick={handleAdd}>add button</button>
     </div>
   );
 }
