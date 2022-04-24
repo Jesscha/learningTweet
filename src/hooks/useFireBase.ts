@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { firestore } from "../firebase";
 // Create a reference to the cities collection
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 // const authorRef = collection(firestore, "content");
 // // Create a query against the collection.
