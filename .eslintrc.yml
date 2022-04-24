@@ -1,0 +1,101 @@
+env:
+  browser: true
+  es2021: true
+  node: true
+  jest: true
+extends:
+  - airbnb
+  - plugin:react/recommended
+  - plugin:import/typescript
+  - plugin:import/recommended
+  - prettier
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - react
+  - react-hooks
+  - "@typescript-eslint"
+  - "unused-imports"
+rules:
+  {
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-filename-extension":
+      [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "import/extensions": ["error", { "js": "never" }],
+    "quotes": ["error", "double"],
+    "import/prefer-default-export": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/alt-text": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "max-len": ["error", { "code": 160 }],
+    "no-mixed-operators": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-shadow": "off",
+    "no-unused-vars": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/no-unescaped-entities": "off",
+    "no-console": "off",
+    "no-plusplus": "off",
+    "no-unsafe-finally": "off",
+    "react/require-default-props": "off",
+    "react/jsx-no-bind": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
+    "arrow-body-style": "off",
+    "no-param-reassign": "off",
+    "padding-line-between-statements":
+      [
+        "error",
+        { "blankLine": "always", "prev": "*", "next": "multiline-block-like" },
+        { "blankLine": "always", "prev": "multiline-block-like", "next": "*" },
+        {
+          "blankLine": "always",
+          "prev": "*",
+          "next": ["const", "let", "export"],
+        },
+        {
+          "blankLine": "always",
+          "prev": ["const", "let", "export"],
+          "next": "*",
+        },
+        {
+          "blankLine": "any",
+          "prev": ["const", "let", "export"],
+          "next": ["const", "let", "export"],
+        },
+        { "blankLine": "always", "prev": "*", "next": "return" },
+        { "blankLine": "always", "prev": "if", "next": "if" },
+      ],
+    "import/order":
+      [
+        "error",
+        {
+          "groups": ["builtin", "external", "internal"],
+          "pathGroups":
+            [{ "pattern": "react", "group": "external", "position": "before" }],
+          "pathGroupsExcludedImportTypes": ["react"],
+          "alphabetize": { "order": "asc", "caseInsensitive": true },
+        },
+      ],
+    "import/no-cycle": [0],
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "no-underscore-dangle": "off",
+    "react/display-name": "off",
+  }
+settings:
+  {
+    "import/resolver":
+      { "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] } },
+  }
+globals:
+  JSX: true
