@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { useUser } from "../hooks/useUser";
 
 const CONTENTS = gql`
   query {
@@ -24,13 +25,16 @@ export function useContentInput() {
   const [addContent] = useMutation(ADD_CONTENT, {
     refetchQueries: [CONTENTS],
   });
+  const { user } = useUser();
 
   const onSubmit = (e: Event) => {
     e.preventDefault();
     setContent("");
 
     if (content.length > 0) {
-      addContent({ variables: { author: "learningMan", content: content } });
+      addContent({
+        variables: { author: user?.displayName, content: content },
+      });
     }
   };
 

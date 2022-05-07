@@ -17,7 +17,11 @@ export default function ContentArea() {
     <Paper sx={{ width: "100%" }}>
       {loading && <CircularProgress />}
       {data?.contents?.map(({ content, author }: any, i: any) => {
-        return <div key={content}>{content}</div>;
+        return (
+          <div key={content}>
+            {content} <span> by {author}</span>
+          </div>
+        );
       })}
     </Paper>
   );
