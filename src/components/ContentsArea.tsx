@@ -11,7 +11,7 @@ const CONTENTS = gql`
 `;
 
 export default function ContentArea() {
-  const { data, loading } = useQuery(CONTENTS, { fetchPolicy: "no-cache" });
+  const { data, loading } = useQuery(CONTENTS);
 
   return (
     <Paper sx={{ width: "100%" }}>

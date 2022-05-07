@@ -1,68 +1,17 @@
 import "./App.css";
-import {
-  ApolloClient,
-  ApolloProvider,
-  gql,
-  InMemoryCache,
-  useMutation,
-  useQuery,
-} from "@apollo/client";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import ContentInput from "./components/ContentInput";
 import ContentArea from "./components/ContentsArea";
+import { useInitializeUser } from "./hooks/useInitializeUser";
+import { useUser } from "./hooks/useUser";
 
-const client = new ApolloClient({
-  uri: "https://us-central1-learningtweet-1dbfe.cloudfunctions.net/graphql",
-  cache: new InMemoryCache(),
-});
+function App() {
+  useInitializeUser();
 
-const CONTENTS = gql`
-  query {
-    contents {
-      content
-      author
-    }
-  }
-`;
-
-const ADD_CONTENT = gql`
-  mutation AddContent($author: String, $content: String) {
-    addContent(author: $author, content: $content) {
-      content
-      author
-    }
-  }
-`;
-
-function TestQuery() {
-  const { data, loading } = useQuery(CONTENTS, { fetchPolicy: "no-cache" });
-  const [addContent] = useMutation(ADD_CONTENT, {
-    refetchQueries: [CONTENTS],
-  });
+  const { user, logIn, logOut } = useUser();
 
   return (
     <>
-      <button
-        onClick={() => {
-          addContent({ variables: { author: "appollo2", content: "222" } });
-        }}
-      >
-        add content
-      </button>
-      {data?.contents?.map(({ content, author }: any, i: any) => {
-        return (
-          <div key={i}>
-            {content} by {author}
-          </div>
-        );
-      })}
-    </>
-  );
-}
-
-function App() {
-  return (
-    <ApolloProvider client={client}>
       <Box
         sx={{
           display: "flex",
@@ -73,6 +22,7 @@ function App() {
           marginRight: "auto",
         }}
       >
+        {user?.displayName}
         <h1>
           러닝 트윗! <br />
           짧은 생각을 모아봅시다.
@@ -80,13 +30,27 @@ function App() {
         <ContentArea />
         <Box
           sx={{
-            "margin-top": "16px",
+            marginTop: "16px",
           }}
         >
           <ContentInput label="오늘의 배움" />
+          <Button
+            onClick={() => {
+              logIn();
+            }}
+          >
+            Login
+          </Button>
+          <Button
+            onClick={() => {
+              logOut();
+            }}
+          >
+            Logout
+          </Button>
         </Box>
       </Box>
-    </ApolloProvider>
+    </>
   );
 }
 
