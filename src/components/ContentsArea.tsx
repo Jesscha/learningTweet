@@ -1,22 +1,10 @@
-import { gql, useQuery } from "@apollo/client";
 import { CircularProgress, Paper } from "@mui/material";
 
-const CONTENTS = gql`
-  query {
-    contents {
-      content
-      author
-    }
-  }
-`;
-
-export default function ContentArea() {
-  const { data, loading } = useQuery(CONTENTS);
-
+export default function ContentArea({ data, loading }: any) {
   return (
-    <Paper sx={{ width: "100%" }}>
+    <Paper sx={{ width: "100%", padding: "24px" }}>
       {loading && <CircularProgress />}
-      {data?.contents?.map(({ content, author }: any, i: any) => {
+      {data?.contentsByAuthor?.map(({ content, author }: any, i: any) => {
         return (
           <div key={content}>
             {content} <span> by {author}</span>
