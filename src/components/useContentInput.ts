@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { DocumentNode } from "graphql";
 import { useUser } from "../hooks/useUser";
 
 const CONTENTS = gql`
@@ -20,10 +21,10 @@ const ADD_CONTENT = gql`
   }
 `;
 
-export function useContentInput() {
+export function useContentInput(refetchQueries?: DocumentNode[] | undefined) {
   const [content, setContent] = useState("");
   const [addContent] = useMutation(ADD_CONTENT, {
-    refetchQueries: [CONTENTS],
+    refetchQueries,
   });
   const { user } = useUser();
 

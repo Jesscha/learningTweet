@@ -61,14 +61,17 @@ function App() {
           러닝 트윗! <br />
           짧은 생각을 모아봅시다.
         </Typography>
-        <ContentArea data={data} loading={loading} />
+        <ContentArea data={data?.contentsByAuthor} loading={loading} />
         <Box
           sx={{
             marginTop: "16px",
           }}
         >
           {user ? (
-            <ContentInput label="오늘의 배움" />
+            <ContentInput
+              label="오늘의 배움"
+              refetchQueries={[CONTENTS_BY_AUTHOR]}
+            />
           ) : (
             <div>로그인후 이용해 주세요</div>
           )}

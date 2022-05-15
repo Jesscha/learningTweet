@@ -1,12 +1,17 @@
 import { Box, TextField } from "@mui/material";
+import { DocumentNode } from "graphql";
 import { useContentInput } from "./useContentInput";
 
 interface ContentInputProps {
   label: string;
+  refetchQueries?: DocumentNode[];
 }
 
-export default function ContentInput({ label }: ContentInputProps) {
-  const { content, setContent, onSubmit } = useContentInput();
+export default function ContentInput({
+  label,
+  refetchQueries,
+}: ContentInputProps) {
+  const { content, setContent, onSubmit } = useContentInput(refetchQueries);
 
   return (
     <Box
