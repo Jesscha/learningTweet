@@ -11,6 +11,7 @@ const CONTENTS = gql`
     contents {
       content
       author
+      timestamp
     }
   }
 `;
@@ -29,9 +30,11 @@ function App() {
 
   const { user, logIn, logOut } = useUser();
 
-  const { data, loading } = useQuery(CONTENTS_BY_AUTHOR, {
-    variables: { author: "CHA Jesse" },
-  });
+  // const { data, loading } = useQuery(CONTENTS_BY_AUTHOR, {
+  //   variables: { author: "CHA Jesse" },
+  // });
+
+  const { data, loading, error } = useQuery(CONTENTS);
 
   return (
     <Container
@@ -61,7 +64,7 @@ function App() {
           러닝 트윗! <br />
           짧은 생각을 모아봅시다.
         </Typography>
-        <ContentArea data={data?.contentsByAuthor} loading={loading} />
+        <ContentArea data={data?.contents} loading={loading} />
         <Box
           sx={{
             marginTop: "16px",
@@ -70,7 +73,7 @@ function App() {
           {user ? (
             <ContentInput
               label="오늘의 배움"
-              refetchQueries={[CONTENTS_BY_AUTHOR]}
+              refetchQueries={[CONTENTS_BY_AUTHOR, CONTENTS]}
             />
           ) : (
             <div>로그인후 이용해 주세요</div>
