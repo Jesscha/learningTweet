@@ -22,6 +22,8 @@ export default function ContentArea({
     return data;
   }, [data]);
 
+  console.log(data);
+
   return (
     <Paper sx={{ width: "100%", padding: "24px" }}>
       {loading && <CircularProgress />}

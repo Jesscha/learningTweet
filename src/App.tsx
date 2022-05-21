@@ -2,7 +2,6 @@ import { gql, useQuery } from "@apollo/client";
 import { Box, Button, Container, Typography } from "@mui/material";
 import ContentInput from "./components/ContentInput";
 import ContentArea from "./components/ContentsArea";
-import DarkModeSwitch from "./components/DarkModeSwitch";
 import { useInitializeUser } from "./hooks/useInitializeUser";
 import { useUser } from "./hooks/useUser";
 
@@ -95,7 +94,6 @@ function App() {
           </Button>
         </Box>
       </Box>
-      <DarkModeSwitch />
     </Container>
   );
 }
