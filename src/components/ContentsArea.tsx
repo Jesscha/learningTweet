@@ -27,11 +27,13 @@ export default function ContentArea({
   return (
     <Paper sx={{ width: "100%", padding: "24px" }}>
       {loading && <CircularProgress />}
-      {_data?.map(({ content, author, timestamp }: any, i: any) => {
+      {_data?.map(({ content, author, timestamp, id }: any, i: any) => {
         return (
           <div key={i}>
-            {content} <span> by {author}</span>
-            {timestamp && timestamp}
+            <>
+              {content} <span> by {author}</span>
+              {timestamp && timestamp}
+            </>
           </div>
         );
       })}

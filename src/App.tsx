@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { gql, useQuery } from "@apollo/client";
 import { Box, Button, Container, Typography } from "@mui/material";
 import ContentInput from "./components/ContentInput";
@@ -11,6 +12,7 @@ const CONTENTS = gql`
       content
       author
       timestamp
+      id
     }
   }
 `;
@@ -20,6 +22,8 @@ const CONTENTS_BY_AUTHOR = gql`
     contentsByAuthor(author: $author) {
       content
       author
+      timestamp
+      id
     }
   }
 `;
@@ -94,6 +98,9 @@ function App() {
           </Button>
         </Box>
       </Box>
+      <a href="metamask://wc:536e94ba-f45a-4400-9bb1-8682dac4817c@1?bridge=https%3A%2F%2Fv.bridge.walletconnect.org&key=8c44e9c600538f35a9c311c1d667ef9fa9d80b0e4eabc88f94f9455ed5fb2b66">
+        제발
+      </a>
     </Container>
   );
 }

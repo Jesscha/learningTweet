@@ -42,7 +42,7 @@ export function DetailPage() {
         }}
       >
         {loading && <CircularProgress />}
-        {data && data.contentById.content}
+        {data && data.contentById && data.contentById.content}
       </Box>
     </Container>
   );
